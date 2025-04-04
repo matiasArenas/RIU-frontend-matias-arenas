@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="mb title">
+        <h1 class="primary-color">{{ title() }}</h1>
+    </div>
+    <form class="d-column" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="container">
+            <mat-form-field>
+                <mat-label>ID de Heroe</mat-label>
+                <input matInput id="id" formControlName="id" />
+            </mat-form-field>
+            <mat-error class="mb" *ngIf="form.get('id')?.hasError('required') && form.get('id')?.touched">El id es
+                requerido.</mat-error>
+            <mat-error class="mb" *ngIf="form.get('id')?.hasError('pattern') && form.get('id')?.touched">Solo se
+                permiten números.</mat-error>
+        </div>
+
+        <div class="container container-column">
+            <mat-form-field>
+                <mat-label>Nombre de Heroe</mat-label>
+                <input customUppercase matInput id="name" formControlName="name" />
+            </mat-form-field>
+            <mat-error class="mb" *ngIf="
+            form.get('name')?.hasError('required') && form.get('name')?.touched
+          ">El nombre es requerido.</mat-error>
+            <mat-error class="mb" *ngIf="
+            form.get('name')?.hasError('pattern') && form.get('name')?.touched
+          ">Solo se permiten letras.</mat-error>
+        </div>
+
+        <div class="button-container">
+            <button mat-flat-button type="submit" [disabled]="form.invalid">
+                Guardar
+            </button>
+        </div>
+    </form>
+
+    <div class="button-container button-container-home">
+        <a mat-button (click)="goToHome()">Volver al listado de Héroes</a>
+    </div>
+</div>
